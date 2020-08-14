@@ -16,10 +16,13 @@ project (${EXECUTABLE_EXE_NAME})
 #link_directories(
                  # Boost库的路径
                  # $ENV{BOOST_LIB_DIR})
+# 添加test文件夹下所有文件
+aux_source_directory(${PROJECT_SOURCE_DIR}/test TEST_SOURCE_FILE)
 
 # main函数
 set(SOURCES
     src/main.cc
+    ${TEST_SOURCE_FILE}
 )
 
 # 把源文件添加进工程中
