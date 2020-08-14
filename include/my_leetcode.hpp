@@ -18,7 +18,6 @@
 #include <unordered_map>
 #include <vector>
 
-
 namespace lee {
 inline namespace leetcode {
 /// 8. 字符串转换整数 (atoi)
@@ -134,7 +133,7 @@ class Automaton {
   long long ans = 0;
 
   void get(char c) {
-    #undef min
+#undef min
     state = table[state][get_col(c)];
     if (state == "in_number") {
       ans = ans * 10 + c - '0';
@@ -167,6 +166,20 @@ int myAtoi_offical(std::string str) {
 ///   [-1, -1, 2]
 /// ]
 std::vector<std::vector<int>> threeSum(std::vector<int>& nums) {}
+
+/// 字符串有三种编辑操作:插入一个字符、删除一个字符或者替换一个字符。
+/// 给定两个字符串，编写一个函数判定它们是否只需要一次(或者零次)编辑。 示例 1:
+/// 输入:
+/// first = "pale"
+/// second = "ple"
+/// 输出: True
+///
+/// 示例 2:
+/// 输入:
+/// first = "pales"
+/// second = "pal"
+/// 输出: False
+bool oneEditAway(std::string first, std::string second) {}
 }  // namespace leetcode
 }  // namespace lee
 
