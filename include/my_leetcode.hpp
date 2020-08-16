@@ -14,6 +14,9 @@
 #ifndef INCLUDE_MY_LEETCODE_HPP_
 #define INCLUDE_MY_LEETCODE_HPP_
 
+#include <climits>
+#include <cmath>
+#include <cstdint>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -65,7 +68,7 @@ inline namespace leetcode {
 /// 输出: -2147483648
 /// 解释: 数字 "-91283472332" 超过 32 位有符号整数范围。
 ///      因此返回 INT_MIN (−231) 。
-int myAtoi(std::string str) {
+inline int myAtoi(std::string str) {
   str.erase(0, str.find_first_not_of(' '));
   if (str.front() == '+') {
     if (std::isdigit(*std::next(str.begin()))) {
@@ -96,7 +99,7 @@ int myAtoi(std::string str) {
     return 0;
   }
   long long result = 0;
-  for (int i = 0; i < num.size(); ++i) {
+  for (size_t i = 0; i < num.size(); ++i) {
     result += num.at(i) - '0';
 
     if (result > INT_MAX && (flag == 1)) {
@@ -144,7 +147,7 @@ class Automaton {
   }
 };
 
-int myAtoi_offical(std::string str) {
+inline int myAtoi_official(std::string str) {
   Automaton automaton;
   for (char c : str) automaton.get(c);
   return automaton.sign * automaton.ans;
@@ -165,10 +168,11 @@ int myAtoi_offical(std::string str) {
 ///   [-1, 0, 1],
 ///   [-1, -1, 2]
 /// ]
-std::vector<std::vector<int>> threeSum(std::vector<int>& nums) {}
+/// std::vector<std::vector<int>> threeSum(std::vector<int>& nums) {}
 
 /// 字符串有三种编辑操作:插入一个字符、删除一个字符或者替换一个字符。
-/// 给定两个字符串，编写一个函数判定它们是否只需要一次(或者零次)编辑。 示例 1:
+/// 给定两个字符串，编写一个函数判定它们是否只需要一次(或者零次)编辑。
+/// 示例 1:
 /// 输入:
 /// first = "pale"
 /// second = "ple"
@@ -179,7 +183,45 @@ std::vector<std::vector<int>> threeSum(std::vector<int>& nums) {}
 /// first = "pales"
 /// second = "pal"
 /// 输出: False
-bool oneEditAway(std::string first, std::string second) {}
+inline bool oneEditAway(std::string first, std::string second) {
+  /// if (first == second) {
+  ///   return true;
+  /// }
+  /// const int len1 = first.size();
+  /// const int len2 = second.size();
+  /// if (abs(len1 - len2) > 1) {
+  ///   return false;
+  /// }
+  /// int i = 0, j = len1 - 1, k = len2 - 1;
+  /// while (i < len1 && i < len2 && first[i] == second[i]) {  // i从左至右扫描
+  ///   ++i;
+  /// }
+  /// while (j >= 0 && k >= 0 && first[j] == second[k]) {  // j、k从右至左扫描
+  ///   --j;
+  ///   --k;
+  /// }
+  /// return j - i < 1 && k - i < 1;
+  if (first == second) {
+    return true;
+  }
+  const int len1 = first.size();
+  const int len2 = second.size();
+  if(abs(len1-len2) > 1){
+    return false;
+  }
+  int left = 0;
+  int x = first.size() - 1;
+  int y = second.size() - 1;
+  while (left < first.size() && left < second.size() &&
+         first[left] == second[left]) {
+    ++left;
+  }
+  while (x >= 0 && y >= 0 && first[x] == second[y]) {
+    --x;
+    --y;
+  }
+  return ((x - left) < 1) && ((y - left) < 1);
+}
 }  // namespace leetcode
 }  // namespace lee
 

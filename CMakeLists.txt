@@ -17,7 +17,7 @@ project (${EXECUTABLE_EXE_NAME})
                  # Boost库的路径
                  # $ENV{BOOST_LIB_DIR})
 # 添加test文件夹下所有文件
-aux_source_directory(${PROJECT_SOURCE_DIR}/test TEST_SOURCE_FILE)
+aux_source_directory(${PROJECT_SOURCE_DIR}/unittest TEST_SOURCE_FILE)
 
 # main函数
 set(SOURCES
